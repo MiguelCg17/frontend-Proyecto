@@ -105,7 +105,7 @@
     <div class="container">
         <h1>Panel del Administrador</h1>
         <form id="form-animal">
-            <!-- Nombre del Animal -->
+           
             <div class="form-group">
                 <label for="nombre">Nombre del Animal:</label>
                 <input type="text" id="nombre" name="Nombre" placeholder="Ejemplo: León" required>
@@ -186,34 +186,33 @@
             <button type="button" id="update-button" style="display:none;">Guardar Cambios</button>
         </form>
 
-        <!-- Botón para eliminar animales -->
+       
         <button id="eliminar-button">Eliminar Animal</button>
 
-        <!-- Botón para buscar y actualizar animales -->
+    
         <button id="actualizar-button">Buscar Animal para Actualizar</button>
 
-        <!-- Botón para ir al formulario de usuario -->
+     
         <button type="button" id="formulario-usuario-button">Ir al Formulario de Usuario</button>
     </div>
 
     <script>
    
-// Redireccionar al formulario de usuario
-// Redireccionar al formulario de usuario
+
 document.getElementById('formulario-usuario-button').addEventListener('click', function() {
     window.location.href = 'https://miguelcg17.github.io/frontend-Proyecto/usuario.html';  
 });
 
 
 
-        // Función de validación para el formulario
+        
         function validateForm() {
             let isValid = true;
 
             document.querySelectorAll('.error-message').forEach(msg => msg.textContent = '');
             document.querySelectorAll('input, select, textarea').forEach(input => input.classList.remove('error'));
 
-            // Validación de cada campo
+           
             const nombre = document.getElementById('nombre');
             if (!nombre.value.trim()) {
                 document.getElementById('nombre-error').textContent = 'El nombre del animal es obligatorio.';

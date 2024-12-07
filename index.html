@@ -69,20 +69,20 @@
             <button type="submit">Ingresar</button>
         </form>
 
-        <!-- Botón para ir al Formulario de Usuario (redirección local) -->
+       
         <button type="button" onclick="window.location.href='usuario.html'">Ir al Formulario de Usuario</button>
     </div>
 
     <script>
-        // Evento para manejar el formulario de login
+       
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();  
 
-            // Obtener el nombre de usuario y contraseña
+           
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Realizar la solicitud POST al backend para autenticar al usuario
+    
             fetch('https://proyecto-f-web.onrender.com/login', {
                 method: 'POST',
                 headers: {

@@ -193,10 +193,15 @@
         <button id="actualizar-button">Buscar Animal para Actualizar</button>
 
         <!-- Botón para ir al formulario de usuario -->
-        <button onclick="location.href='https://proyecto-f-web.onrender.com/usuario'">Ir al Formulario de Usuario</button>
+        <button type="button" id="formulario-usuario-button">Ir al Formulario de Usuario</button>
     </div>
 
     <script>
+        // Redireccionar al formulario de usuario
+        document.getElementById('formulario-usuario-button').addEventListener('click', function() {
+            window.location.href = 'https://proyecto-f-web.onrender.com/usuario';
+        });
+
         // Función de validación para el formulario
         function validateForm() {
             let isValid = true;

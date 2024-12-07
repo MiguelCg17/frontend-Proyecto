@@ -197,22 +197,26 @@
     </div>
 
     <script>
-   
+       document.getElementById('habitat').addEventListener('change', function () {
+            const habitat = this.value;
+            const imageUrl = `https://miguelcg17.github.io/${habitat.toLowerCase()}.jpg`;  // Si las imágenes están en la raíz, no es necesario especificar "images/habitats".
+
+            const habitatImage = document.getElementById('habitat-image');
+
+            // Mostrar la imagen del hábitat
+            habitatImage.src = imageUrl;
+            habitatImage.style.display = 'block';  // Aseguramos que la imagen se muestre
+        });
 
 document.getElementById('formulario-usuario-button').addEventListener('click', function() {
     window.location.href = 'https://miguelcg17.github.io/frontend-Proyecto/usuario.html';  
 });
-
-
-
-        
         function validateForm() {
             let isValid = true;
 
             document.querySelectorAll('.error-message').forEach(msg => msg.textContent = '');
             document.querySelectorAll('input, select, textarea').forEach(input => input.classList.remove('error'));
 
-           
             const nombre = document.getElementById('nombre');
             if (!nombre.value.trim()) {
                 document.getElementById('nombre-error').textContent = 'El nombre del animal es obligatorio.';

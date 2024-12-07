@@ -58,7 +58,7 @@
 <body>
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
-        <!-- Formulario de inicio de sesión con AJAX -->
+   
         <form id="login-form">
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
@@ -69,21 +69,20 @@
             <button type="submit">Ingresar</button>
         </form>
 
-        <!-- Botones para redirigir a otras páginas -->
+       
         <button type="button" onclick="window.location.href='https://proyecto-f-web.onrender.com/usuario'">Ir al Formulario de Usuario</button>
-        <button type="button" onclick="window.location.href='https://proyecto-f-web.onrender.com/admin'">Ir al Panel de Admin</button>
     </div>
 
     <script>
-        // Manejo del formulario con AJAX
+      
         document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();  // Evita el comportamiento por defecto (recarga de página)
+            event.preventDefault();  
 
-            // Obtener los valores del formulario
+       
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Enviar los datos al backend usando fetch
+        
             fetch('https://proyecto-f-web.onrender.com/login', {
                 method: 'POST',
                 headers: {
@@ -91,7 +90,7 @@
                 },
                 body: JSON.stringify({ username, password })
             })
-            .then(response => response.text()) // Esperar respuesta de tipo texto
+            .then(response => response.text())
             .then(data => {
                 if (data.includes('Credenciales incorrectas')) {
                     alert('Usuario o contraseña incorrectos. Intente de nuevo.');

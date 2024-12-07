@@ -69,20 +69,20 @@
             <button type="submit">Ingresar</button>
         </form>
 
-       
-        <button type="button" onclick="window.location.href='https://proyecto-f-web.onrender.com/usuario'">Ir al Formulario de Usuario</button>
+        <!-- Botón para ir al Formulario de Usuario (redirección local) -->
+        <button type="button" onclick="window.location.href='usuario.html'">Ir al Formulario de Usuario</button>
     </div>
 
     <script>
-      
+        // Evento para manejar el formulario de login
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();  
 
-       
+            // Obtener el nombre de usuario y contraseña
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-        
+            // Realizar la solicitud POST al backend para autenticar al usuario
             fetch('https://proyecto-f-web.onrender.com/login', {
                 method: 'POST',
                 headers: {
@@ -95,8 +95,12 @@
                 if (data.includes('Credenciales incorrectas')) {
                     alert('Usuario o contraseña incorrectos. Intente de nuevo.');
                 } else {
-                    
-                    window.location.href = 'https://proyecto-f-web.onrender.com/admin';
+                   
+                    if (username === 'admin') {
+                        window.location.href = 'admin.html';  
+                    } else {
+                        window.location.href = 'usuario.html'; 
+                    }
                 }
             })
             .catch(error => {
@@ -107,4 +111,5 @@
     </script>
 </body>
 </html>
+
 

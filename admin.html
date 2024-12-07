@@ -228,7 +228,7 @@
 
             const habitat = document.getElementById('habitat');
             if (!habitat.value) {
-                document.getElementById('habitat-error').textContent = 'El hábitat es obligatorio.';
+                document.getElementById('habitat-error').textContent = 'Selecciona el hábitat del animal.';
                 habitat.classList.add('error');
                 isValid = false;
             }
@@ -242,7 +242,7 @@
 
             const estado = document.getElementById('estado');
             if (!estado.value) {
-                document.getElementById('estado-error').textContent = 'El estado de conservación es obligatorio.';
+                document.getElementById('estado-error').textContent = 'Selecciona el estado de conservación.';
                 estado.classList.add('error');
                 isValid = false;
             }
@@ -264,129 +264,35 @@
             return isValid;
         }
 
-        // Enviar el formulario para registrar un animal
+        // Enviar formulario
         document.getElementById('form-animal').addEventListener('submit', async (e) => {
             e.preventDefault();
 
             if (validateForm()) {
-                const form = e.target;
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData.entries());
+                const formData = new FormData(e.target);
+                const animalData = {};
+
+                formData.forEach((value, key) => {
+                    animalData[key] = value;
+                });
 
                 try {
                     const response = await fetch('https://proyecto-f-web.onrender.com/animales', {
                         method: 'POST',
-                        body: JSON.stringify(data),
                         headers: {
                             'Content-Type': 'application/json',
                         },
+                        body: JSON.stringify(animalData),
                     });
+
                     if (response.ok) {
-                        alert('Animal registrado exitosamente.');
-                        form.reset();
+                        alert('Animal registrado correctamente.');
                     } else {
-                        alert('Hubo un error al registrar el animal.');
+                        alert('Hubo un problema al registrar el animal.');
                     }
                 } catch (error) {
-                    console.error('Error al registrar animal:', error);
-                    alert('Error al registrar el animal. Intente nuevamente.');
-                }
-            }
-        });
-
-        // Mostrar la imagen del hábitat según la selección
-        document.getElementById('habitat').addEventListener('change', (e) => {
-            const habitat = e.target.value.toLowerCase();
-            const imageUrl = `images/habitats/${habitat}.jpg`;
-
-            const imageElement = document.getElementById('habitat-image');
-            imageElement.src = imageUrl;
-            imageElement.style.display = 'block';
-        });
-
-        // Eliminar un animal
-        document.getElementById('eliminar-button').addEventListener('click', async () => {
-            const nombreAnimal = prompt("Ingrese el nombre del animal que desea eliminar:");
-
-            if (nombreAnimal) {
-                try {
-                    const response = await fetch(`https://proyecto-f-web.onrender.com/animales/${nombreAnimal}`, { method: 'DELETE' });
-                    if (response.ok) {
-                        alert('Animal eliminado exitosamente.');
-                    } else {
-                        alert('No se pudo eliminar el animal.');
-                    }
-                } catch (error) {
-                    console.error('Error al eliminar el animal:', error);
-                    alert('Error al eliminar el animal. Intente nuevamente.');
-                }
-            }
-        });
-
-        // Buscar un animal para actualizar
-        document.getElementById('actualizar-button').addEventListener('click', async () => {
-            const nombreAnimal = prompt("Ingrese el nombre del animal que desea actualizar:");
-
-            if (nombreAnimal) {
-                try {
-                    const response = await fetch(`https://proyecto-f-web.onrender.com/animales/${nombreAnimal}`, { method: 'GET' });
-                    if (response.ok) {
-                        const animal = await response.json();
-
-                        // Llenar el formulario con los datos del animal
-                        document.getElementById('nombre').value = animal.Nombre;
-                        document.getElementById('especie').value = animal.Especie;
-                        document.getElementById('edad').value = animal.Edad;
-                        document.getElementById('habitat').value = animal.Habitat;
-                        document.getElementById('dieta').value = animal.Dieta;
-                        document.getElementById('estado').value = animal.Estado_Conservacion;
-                        document.getElementById('pais').value = animal.Pais_Origen;
-                        document.getElementById('descripcion').value = animal.Descripcion;
-
-                        // Mostrar la imagen del hábitat
-                        const imageUrl = `images/habitats/${animal.Habitat.toLowerCase()}.jpg`;
-                        const imageElement = document.getElementById('habitat-image');
-                        imageElement.src = imageUrl;
-                        imageElement.style.display = 'block';
-
-                        // Mostrar el botón de "Guardar Cambios"
-                        document.getElementById('update-button').style.display = 'inline-block';
-                    } else {
-                        alert('No se encontró el animal.');
-                    }
-                } catch (error) {
-                    console.error('Error al buscar animal:', error);
-                    alert('Error al buscar el animal. Intente nuevamente.');
-                }
-            }
-        });
-
-        // Guardar los cambios de un animal
-        document.getElementById('update-button').addEventListener('click', async () => {
-            const form = document.getElementById('form-animal');
-            if (validateForm()) {
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData.entries());
-                const nombreAnimal = data.Nombre;
-
-                try {
-                    const response = await fetch(`https://proyecto-f-web.onrender.com/animales/${nombreAnimal}`, {
-                        method: 'PUT',
-                        body: JSON.stringify(data),
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    });
-                    if (response.ok) {
-                        alert('Animal actualizado exitosamente.');
-                        form.reset();
-                        document.getElementById('update-button').style.display = 'none'; 
-                    } else {
-                        alert('No se pudo actualizar el animal.');
-                    }
-                } catch (error) {
-                    console.error('Error al actualizar animal:', error);
-                    alert('Error al actualizar el animal. Intente nuevamente.');
+                    console.error('Error al enviar los datos:', error);
+                    alert('Error en la solicitud. Intente nuevamente.');
                 }
             }
         });

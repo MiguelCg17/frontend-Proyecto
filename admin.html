@@ -203,13 +203,13 @@
     <script>
         document.getElementById('habitat').addEventListener('change', function () {
             const habitat = this.value;
-            const imageUrl = `https://miguelcg17.github.io/frontend-Proyecto/${habitat.toLowerCase()}.jpg`;  // Si las imágenes están en la raíz, no es necesario especificar "images/habitats".
+            const imageUrl = `https://miguelcg17.github.io/frontend-Proyecto/${habitat.toLowerCase()}.jpg`;  
 
             const habitatImage = document.getElementById('habitat-image');
 
             // Mostrar la imagen del hábitat
             habitatImage.src = imageUrl;
-            habitatImage.style.display = 'block';  // Aseguramos que la imagen se muestre
+            habitatImage.style.display = 'block';  
         });
 
         document.getElementById('formulario-usuario-button').addEventListener('click', function() {
@@ -363,12 +363,12 @@ document.getElementById('actualizar-button').addEventListener('click', async () 
                     const formData = new FormData(document.getElementById('form-animal'));
                     const updatedAnimalData = {};
 
-                    // Convertir FormData en objeto
+                
                     formData.forEach((value, key) => {
                         updatedAnimalData[key] = value;
                     });
 
-                    // Realizar la solicitud PUT para actualizar el animal
+        
                     const response = await fetch(`https://proyecto-f-web.onrender.com/animales/${idAnimal}`, {
                         method: 'PUT',
                         headers: {
@@ -383,7 +383,7 @@ document.getElementById('actualizar-button').addEventListener('click', async () 
                         // Limpiar los campos del formulario después de la actualización
                         document.getElementById('form-animal').reset();
 
-                        // Ocultar el botón de "Actualizar" y mostrar el de "Enviar"
+                       
                         document.getElementById('update-button').style.display = 'none';
                         document.getElementById('submit-button').style.display = 'inline-block';
                     } else {

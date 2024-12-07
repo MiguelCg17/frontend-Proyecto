@@ -104,7 +104,7 @@
 <body>
     <div class="container">
         <h1>Panel del Administrador</h1>
-        <form id="form-animal" action="https://proyecto-f-web.onrender.com/animales" method="POST" novalidate>
+        <form id="form-animal">
             <!-- Nombre del Animal -->
             <div class="form-group">
                 <label for="nombre">Nombre del Animal:</label>
@@ -147,7 +147,7 @@
             <!-- Dieta -->
             <div class="form-group">
                 <label for="dieta">Dieta:</label>
-                <input type="text" id="dieta" name="dieta" placeholder="Ejemplo: Carnívoro" required>
+                <input type="text" id="dieta" name="Dieta" placeholder="Ejemplo: Carnívoro" required>
                 <p class="error-message" id="dieta-error"></p>
             </div>
 
@@ -181,7 +181,7 @@
                 <p class="error-message" id="descripcion-error"></p>
             </div>
 
-            <!-- Botón -->
+            <!-- Botones -->
             <button type="submit" id="submit-button">Registrar Animal</button>
             <button type="button" id="update-button" style="display:none;">Guardar Cambios</button>
         </form>
@@ -200,7 +200,7 @@
         // Función de validación para el formulario
         function validateForm() {
             let isValid = true;
-           
+
             document.querySelectorAll('.error-message').forEach(msg => msg.textContent = '');
             document.querySelectorAll('input, select, textarea').forEach(input => input.classList.remove('error'));
 
@@ -264,10 +264,10 @@
             return isValid;
         }
 
-        // Manejo del formulario para validar datos antes de enviar
+        // Enviar el formulario para registrar un animal
         document.getElementById('form-animal').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             if (validateForm()) {
                 const form = e.target;
                 const formData = new FormData(form);
@@ -304,7 +304,7 @@
             imageElement.style.display = 'block';
         });
 
-        // Función para eliminar un animal
+        // Eliminar un animal
         document.getElementById('eliminar-button').addEventListener('click', async () => {
             const nombreAnimal = prompt("Ingrese el nombre del animal que desea eliminar:");
 
@@ -323,7 +323,7 @@
             }
         });
 
-        // Función para buscar y actualizar un animal
+        // Buscar un animal para actualizar
         document.getElementById('actualizar-button').addEventListener('click', async () => {
             const nombreAnimal = prompt("Ingrese el nombre del animal que desea actualizar:");
 
@@ -361,7 +361,7 @@
             }
         });
 
-        // Aplicar cambios al animal
+        // Guardar los cambios de un animal
         document.getElementById('update-button').addEventListener('click', async () => {
             const form = document.getElementById('form-animal');
             if (validateForm()) {

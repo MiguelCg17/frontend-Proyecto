@@ -85,7 +85,7 @@
     </ul>
 
     <!-- Detalles del animal seleccionado -->
-    <div id="detalles-animal">
+    <div id="detalles-animal" style="display: none;">
         <h2 id="nombre"></h2>
         <p><strong>Especie:</strong> <span id="especie"></span></p>
         <p><strong>Edad:</strong> <span id="edad"></span> años</p>
@@ -105,7 +105,7 @@
         // Función para cargar la lista de animales
         async function cargarAnimales() {
             try {
-                const response = await fetch('https://proyecto-f-web.onrender.com/animales');
+                const response = await fetch('https://proyecto-f-web.onrender.com/animales'); // Backend de Render
                 if (response.ok) {
                     const animales = await response.json();
                     const lista = document.getElementById('lista-animales');
@@ -124,7 +124,7 @@
         // Función para cargar los detalles del animal seleccionado
         async function cargarDetallesAnimal(nombre) {
             try {
-                const response = await fetch(`https://proyecto-f-web.onrender.com/animales/${nombre}`);
+                const response = await fetch(`https://proyecto-f-web.onrender.com/animales/${nombre}`); // Backend de Render
                 if (response.ok) {
                     const animal = await response.json();
 
@@ -133,7 +133,7 @@
                     document.getElementById('especie').textContent = animal.Especie;
                     document.getElementById('edad').textContent = animal.Edad;
                     document.getElementById('habitat').textContent = animal.Habitat;
-                    document.getElementById('dieta').textContent = animal.dieta;
+                    document.getElementById('dieta').textContent = animal.Dieta;
                     document.getElementById('estado').textContent = animal.Estado_Conservacion;
                     document.getElementById('pais').textContent = animal.Pais_Origen;
                     document.getElementById('descripcion').textContent = animal.Descripcion;

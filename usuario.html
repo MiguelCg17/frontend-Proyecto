@@ -105,12 +105,12 @@
         // Función para cargar la lista de animales
         async function cargarAnimales() {
             try {
-                const response = await fetch('https://proyecto-f-web.onrender.com/animales'); // Backend de Render
+                const response = await fetch('https://proyecto-f-web.onrender.com/animales');
                 if (response.ok) {
                     const animales = await response.json();
                     const lista = document.getElementById('lista-animales');
                     lista.innerHTML = animales.map(animal =>
-                        `<li data-id="${animal.id_animal}">${animal.Nombre}</li>` // Ahora usamos el id_animal
+                        `<li data-id="${animal.id_animal}">${animal.Nombre}</li>` 
                     ).join('');
                 } else {
                     alert('Error al cargar la lista de animales.');
